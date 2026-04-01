@@ -1,0 +1,161 @@
+
+<html>
+    <head>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        />
+        <title>Relax Time</title>
+    </head>
+    <!-- The video -->
+    <body class="relaxbody">
+        <video loop autoplay muted id="myVideo">
+            <!--Videos randomly added here-->
+        </video>
+        
+        <div class="content">
+            <!-- A button to pause/play the video with JavaScript -->
+            <button id="myBtn" onclick="myFunction()"><i class="fa-solid fa-pause"></i> Pause</button>
+        
+            <button id="mute" onclick="doMute()"><i class="fa-solid fa-volume-xmark"></i></button>
+        </div>
+    </body>
+    <style>     
+        .relaxbody{
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(45deg, #00c3ff, #00ad1d);
+        }
+
+        /* Style the video: 100% width and height to cover the entire window */
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Add some content at the bottom of the video/page */
+        .content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            position: fixed;
+            bottom: 0;
+            background: transparent;
+            width: 100%;
+            padding: 20px;
+        }
+
+        /* Style the button used to pause/play the video */
+        #myBtn {
+            width: 200px;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            background: #000;
+            color: #00c8ff;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        #mute {
+            margin-left: 30px;
+            border: none;
+            outline: wheat;
+            color: white;
+            outline-width: 5px;
+            background-color: #000 ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+        }
+
+        #myBtn:hover {
+            transition: 0.7s;
+            border-radius: 25px;
+            background: #00ffd9;
+            color: black;
+        }
+
+        :root {
+            --primary-clr: #b38add;
+        }
+
+        /* nice scroll bar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            border-radius: 50px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-clr);
+            border-radius: 50px;
+        }
+
+    </style>
+    <script>
+        // Array containing the filenames of the videos
+        const videos = ['videos/sosfail1.mp4' ,'videos/bean1.mp4' ,'videos/funnyfail1.mp4' ,'videos/funny2.mp4' ,'videos/cat1.mp4', 'videos/cat2.mp4', 'videos/cat3.mp4'];
+
+        // Function to randomly select a video from the array
+        function getRandomVideo() {
+            const randomIndex = Math.floor(Math.random() * videos.length);
+            return videos[randomIndex];
+        }
+
+        // Function to set the source of the video element
+        function setVideoSource() {
+            const video = document.getElementById('myVideo');
+            const randomVideo = getRandomVideo();
+            const source = document.createElement('source');
+            source.src = randomVideo;
+            source.type = 'video/mp4';
+            video.innerHTML = ''; // Clear any existing source elements
+            video.appendChild(source);
+        }
+
+        // Set the video source when the page loads
+        window.addEventListener('load', setVideoSource);
+
+        // Get the video
+        var video = document.getElementById("myVideo");
+
+        // Get the button
+        var btn = document.getElementById("myBtn");
+        var mutebtn = document.getElementById("mute");
+        // Pause and play the video, and change the button text
+        video.play();
+
+        function myFunction() {
+            if (video.paused) {
+                video.play();
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+            } else {
+                video.pause();
+                btn.innerHTML = '<i class="fa-solid fa-play"></i> Play';
+            }
+        }
+
+        function doMute() {
+            if (video.muted){
+                video.muted = !video.muted;
+                mutebtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+            } else {
+                video.muted = !video.muted;
+                mutebtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+            }
+        }
+    </script>
+</html>

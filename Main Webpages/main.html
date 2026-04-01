@@ -1,0 +1,382 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="imgs/img-sys/title-logo.png" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+        <title>Structurize</title>
+        <header>
+            <a href="main.html" class="logo">STRUCTURIZE</a>
+            <ul>
+                <li><a href="test.html"><div class ="share-btn">Share</div></a></li>
+                <li><a href="relax.html"><div class ="upgrade-btn"><b>Relax</b></div></a></li>
+                <li><span class ="symbol" onclick="openSettings()" ><i class="fa fa-cog" aria-hidden="true"></i></span></a></li>
+            </ul>
+        </header>
+        <section class="banner"></section>
+    </head>
+    <body class="main-body">
+        <div class="loading-screen">
+            <div class="loader-logo" id="logo"></div>
+        </div>
+        <div class="clock">
+            <div class="time" id="time">00:00</div>
+            <div class="date" id="date">Date</div>
+        </div>
+
+        <a class="fixedButton">
+            <button class="roundedFixedBtn" onclick="openModal();">🖌</button>
+        </a>
+        <iframe class="news-widget" src="https://widgets.commoninja.com/iframe/d07952b6-d18c-4469-a8fd-9d63ac163891" width="100%" frameborder="0" scrolling="no"></iframe>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <ul class="modal-ul">
+                    <li><h2>Custom Wallpaper</h2></li>
+                    <li><p>You can set a custom wallpaper if you would like to. Use the button below to upload your own picture as a wallpaper. Make sure to upload files with an appropriate image file extension...</p></li>
+                    <li><button id="uploadBtn" class="imagebtn">Upload Image</button></li>
+                    <li><input type="file" id="imageUpload" accept="image/*" hidden></li>
+                </ul>
+            </div>
+        </div>
+        <div class ="columns">
+            <span class ="card-0">
+                <div class="s-calendar">
+                    <div class="calendar">
+                        <span class="left">
+                            <p id="dateflip">01</p>
+                            <p id="dayflip">Sunday</p>
+                        </span>
+                        <span class="right">
+                            <p id="monthflip">January</p>
+                            <p id="yearflip">2024</p>
+                        </span>
+                    </div>
+                </div>
+                <span class="stuff">
+                    <span class="image-time">
+                        <img src="imgs/img-sys/time_spent.png" height="200px" width="200px" alt="time spent">
+                    </span>
+                    <span class="time-spent">
+                        <span class="time-spent-holder">
+                            <span class="time-text">
+                                <p>Time Spent Today:</p>
+                            </span>
+                            <span id="timeDisplay"> 
+                                <!-- Display the total time spent here -->
+                            </span>
+                        </span>
+                    </span>
+                </span>
+            </span>
+            <div class="card-1">
+                <p>Bookmarks</p>
+                <div class="bookmarks">
+                    <span><a href="https://www.google.com"><img class="google" src="imgs/web-icons/chrome.png" alt="google icon"></a></span>
+                    <span><a href="https://www.youtube.com"><img class="youtube" src="imgs/web-icons/youtube.png" alt="youtube icon"></a></span>
+                    <span><a href="https://www.amazon.co.uk"><img class="amazon" src="imgs/web-icons/amazon.png" alt="amazon icon"></a></span>
+                    <span><a href="https://www.aniwatch.to"><img class="aniwatch" src="imgs/web-icons/aniwatch.png" alt="aniwatch icon"></a></span>
+                    <span><a href="https://www.netflix.com"><img class="netflix" src="imgs/web-icons/netflix.jpg" alt="netflix icon"></a></span>
+                    <span><a href="https://www.physicsandmathstutor.com"><img class="pmt" src="imgs/web-icons/pmt.png" alt="pmt icon"></a></span>
+                    <span><a href="https://www.instagram.com"><img class="instagram" src="imgs/web-icons/instagram.png" alt="insta icon"></a></span>
+                    <span><a href="https://en.wikipedia.org/wiki/Main_Page"><img class="wiki" src="imgs/web-icons/wiki.png" alt="wikipedia icon"></a></span>
+                    <span><a href="https://www.ebay.co.uk"><img class="ebay" src="imgs/web-icons/ebay.png" alt="ebay icon"></a></span>
+                    <span><a href="https://www.mathsisfun.com"><img class="mathsisfun" src="imgs/web-icons/mathisfun.png" alt="mathsisfun icon"></a></span>
+                    <span><a href="https://www.cambridge.org/go"><img class="cambridgego" src="imgs/web-icons/cambridgego.png" alt="cambridgego icon"></a></span>
+                </div>
+            </div>
+            <div class ="card-2">
+                <div class="notes">
+                    <div class="notepad">
+                        <textarea id="text-editor" class="takenotes" placeholder="Start typing..."></textarea>
+                    </div>
+                    <button class="save-notes" id="save-button">Save</button>
+                </div>
+            </div>
+            <div class ="card-3">
+                <div class="timer-h">
+                    <div class="timer">
+                        <h1 class="nowtime" id="timer-display">00:00:00</h1>
+                        <div class="btn-holder" style="background: linear-gradient(338deg, #2f3ddb, #90b9ff); border-radius: 50px;">
+                            <button class="starttime" id="start-button">Start</button>
+                            <button class="stoptime" id="stop-button">Stop</button>
+                            <button class="resettime" id="reset-button">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="timer-h">
+                        <div class="timerz">
+                        <div id="timer2"><h1 class="nowtime">00:00:00</h1></div>
+                        <div class="btn-holder" style="background: linear-gradient(338deg, #2f3ddb, #90b9ff); border-radius: 50px;">
+                            <button class="starttime" id="start2">Start</button>
+                            <button class="stoptime" id="stop2">Stop</button>
+                            <button class="resettime" id="reset2">Reset</button>
+                        </div>
+                        <div class="selector-container">
+                            <select id="hours2"></select>
+                            <select id="minutes2"></select>
+                            <select id="seconds2"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class ="card-4">
+                <span class="todo1">
+                    <div class="todo-container">
+                        <div class="header-holder">
+                            <div class="header">
+                                <h3>To-Do List</h3>
+                            </div>
+                        </div>
+                        <ul class="todo-list" id="todo-list">
+                            <!-- Todo items will be dynamically added here by JavaScript -->
+                        </ul>
+                        <div class="add-todo">
+                            <input type="text" id="new-todo" placeholder="Add a new task">
+                            <button onclick="addTodo()"><i class="fas fa-plus"></i></button>
+                            <select id="priority">
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class ="card-5">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/671ZWlQMPSY2IO6Ot7b57V?utm_source=generator" width="100%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div class="card-7">
+                <span class="c7header">JS Tesseract</span>
+                <ul class="imagetext">
+                    <li>
+                        <p>
+                            This feature is still being developed, so the text detected will not be completely accurate.<br>
+                            - Make sure the handwriting is clear.<br>
+                            - If using an image, make sure the resolution is high and is clear to see.<br>
+                            - Use proper file extensions please, or else the text will not be detected.<br>
+                        </p>
+                    </li>                 
+                    <li><button id="imageup" class="imagebtn">Convert !</button></li>
+                    <li><input type="file" id="imgupdate" accept="image/*" hidden></li>
+                    <li><div id="output"></div></li>
+                </ul>
+            </div>
+            <div class="card-6">
+                <div class="w-wrapper">
+                    <h3 style="display:flex; color: #1d1d1d; justify-content: center;">Weather Widget</h3>
+                        <section class="input-area">
+                            <p class="info-txt pending">Please Enter A Valid City Name</p>
+                            <input type="text" placeholder="Enter City Name" spellcheck="false" required>
+                            <div class="separator"></div>
+                            <button>Get Device Location</button>
+                        </section>
+                        <section class="weather-area">
+                            <img src="cloud.svg" alt="Weather Icon">
+                            <div class="temp">
+                                <span class="numb">13</span>
+                                <span class="deg">°</span>C
+                            </div>
+                            <div class="weather">Broken Clouds</div>
+                            <div class="location">
+                                <i class="bx bx-map"></i>
+                                <span>Oxford, United Kingdom</span>
+                            </div>
+                            <div class="bottom-details">
+                                <div class="column feels">
+                                    <i class="bx bxs-thermometer"></i>
+                                    <div class="details">
+                                        <div class="temp">
+                                            <span class="numb-2">17</span>
+                                            <span class="deg">°</span>C
+                                        </div>
+                                        <p>Feels like</p>
+                                    </div>
+                                </div>
+                                <div class="column humidity">
+                                    <i class="bx bxs-droplet-half"></i>
+                                    <div class="details">   
+                                        <span>84%</span>
+                                        <p>Humidty</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="card-8">
+                <iframe src="https://embed.styledcalendar.com/#BPRiEDJhj94YWGuA616s" title="Styled Calendar" class="styled-calendar-container" style="width: 100%; border: none;" data-cy="calendar-embed-iframe"></iframe>
+                <script async type="module" src="https://embed.styledcalendar.com/assets/parent-window.js"></script>
+            </div>
+        </div>
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="settings">
+            <div class="settings-content">
+                <span class="close" onclick="closeSettings()">&times;</span>
+                <ul class="modal-ul">
+                    <li><h2>Settings</h2></li>
+                    <li><p>Change Time Font: </p></li>
+                    <div>
+                        <select id="input-font" class="input" onchange="changeFont(this);">
+                            <option value="poppins" selected="selected">Default</option>
+                            <option value="roboto">Formal</option>
+                            <option value="monoton">Funky</option>
+                            <option value="orbitron">Futuristic</option>
+                            <option value="Dancing Script">Fancy</option>
+                            <option value="silkscreen">Retro Gaming</option>
+                            <option value="bangers">Comic</option>
+                        </select>
+                    </div>
+                    <div class="space1"></div>
+                    
+                    <div class="checkbox-holder">
+                        <div class="checkbox-wrapper-35">
+                            <input class="switch" type="checkbox" id="switch" name="switch" value="private">
+                            <label for="switch">
+                              <span class="switch-x-text">This is </span>
+                              <span class="switch-x-toggletext">
+                                <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Dark Mode</span>
+                                <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Light Mode</span>
+                              </span>
+                            </label>
+                        </div>                         
+                    </div>
+                    <div class="space1"></div>
+                    <button class="logout-btn" onclick="logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</button>
+                </ul>
+            </div>
+        </div>
+        <script>            
+            const hoursSelect = document.getElementById('hours2');
+            const minutesSelect = document.getElementById('minutes2');
+            const secondsSelect = document.getElementById('seconds2');
+            const startButton2 = document.getElementById('start2');
+            const stopButton2 = document.getElementById('stop2');
+            const resetButton2 = document.getElementById('reset2');
+            const timerDisplay2 = document.getElementById('timer2');
+
+            let hours2 = 0;
+            let minutes2 = 0;
+            let seconds2 = 0;
+            let interval;
+
+            // Initialize the selector options
+            for (let i = 0; i < 24; i++) {
+                hoursSelect.options[hoursSelect.options.length] = new Option(i < 10 ? '0' + i : i, i);
+            }
+            for (let i = 0; i < 60; i++) {
+                minutesSelect.options[minutesSelect.options.length] = new Option(i < 10 ? '0' + i : i, i);
+                secondsSelect.options[secondsSelect.options.length] = new Option(i < 10 ? '0' + i : i, i);
+            }
+
+            startButton2.addEventListener('click', startTimer);
+            stopButton2.addEventListener('click', stopTimer);
+            resetButton2.addEventListener('click', resetTimer);
+
+            function startTimer() {
+                hours = parseInt(hoursSelect.value);
+                minutes = parseInt(minutesSelect.value);
+                seconds = parseInt(secondsSelect.value);
+
+                let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+                timerDisplay2.className = "nowtime";
+                interval = setInterval(function() {
+                    totalSeconds--;
+                    if (totalSeconds < 0) {
+                        clearInterval(interval);
+                        timerDisplay2.textContent = '00:00:00';
+                        playBeep()
+                        return;
+                    }
+                    hours = Math.floor(totalSeconds / 3600);
+                    minutes = Math.floor((totalSeconds % 3600) / 60);
+                    seconds = totalSeconds % 60;
+
+                    timerDisplay2.textContent = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                }, 1000);
+            }
+
+            function stopTimer() {
+                clearInterval(interval);
+                stopBeep();
+            }
+
+            function resetTimer() {
+                clearInterval(interval);
+                stopBeep();
+                hoursSelect.selectedIndex = 0;
+                minutesSelect.selectedIndex = 0;
+                secondsSelect.selectedIndex = 0;
+                timerDisplay2.textContent = '00:00:00';
+            }
+
+            function playBeep() {
+                beep = new Audio('sys_sounds/beep.mp3'); // Replace 'beep.mp3' with the path to your beep sound file
+                beep.play();
+            }
+
+            function stopBeep() {
+                if (beep) {
+                    beep.pause();
+                    beep.currentTime = 0;
+                }
+            }
+                        
+            // Get the modal
+            var c_modal = document.getElementById('copymodal');
+
+            // Function to open the modal
+            function opencopy() {
+            c_modal.style.display = 'block';
+            }
+
+            // Function to close the modal
+            function closecopy() {
+            c_modal.style.display = 'none';
+            }
+
+            // Close the modal when clicking outside of the modal content
+            window.onclick = function(event) {
+            if (event.target == c_modal) {
+                c_modal.style.display = 'none';
+            }
+            }
+
+        </script>
+        <div id="settingsModal" class="settings">
+            <div class="settings-content">
+                <span class="close" onclick="closeSettings()">&times;</span>
+                <ul class="modal-ul">
+                    <li><h2>Link</h2></li>
+                    <li><p>Copy the link below: </p></li>
+                    <div>
+                    </div>
+                    <div class="space1"></div>
+                    
+                    <input class="copyinp" value="">
+                              
+                    </div>
+                    <div class="space1"></div>
+                </ul>
+            </div>
+        </div>
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.4.1/dist/tesseract.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    </body>
+</html>
+
+
+<!--
+                
+-->
